@@ -42,4 +42,4 @@ Apache-2.0
 
 ## How to Cite
 
-Zenodo DOI: 10.5281/zenodo.22676336
+Zenodo DOI: [https://doi.org/10.5281/zenodo.22676336](https://doi.org/10.5281/zenodo.22676336)
