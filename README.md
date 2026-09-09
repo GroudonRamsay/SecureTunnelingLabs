@@ -28,7 +28,7 @@ Apache-2.0
 - Linux virtual machines or containers
 - Vendor images where required by specific labs
 
-## Supported Protocols
+## Supported Experiments
 
 - MACsec
 - ANYsec
