@@ -11,7 +11,7 @@ An important note is that the version of OpenSSL used in this laboratory only pr
 If you tested DTLS in the Overview section, you should already have a complete handshake to analyze. If not, start a Wireshark capture between the two DTLS peers and connect the client to the server. The handshake should look identical or similar to the following:
 
 <figure markdown id="figure-1">
-  ![Figure 1: DTLS Handshake](../images/DTLSLIVEHAND.png)
+  ![Figure 1: DTLS Handshake](../images/DTLSLIVEHAND.png){width="750"}
   <figcaption>Figure 1: DTLS Handshake</figcaption>
 </figure>
 
@@ -24,12 +24,12 @@ The first two packets are related to another DTLS feature, the stateless cookie.
 We can see the cookie being sent by the server in Figure 2, and in Figure 3 we can see the second ClientHello with the cookie added to the request.
 
 <figure markdown id="figure-2">
-  ![Figure 2: DTLS Server sends a Cookie](../images/DTLSCOOKIE1.png)
+  ![Figure 2: DTLS Server sends a Cookie](../images/DTLSCOOKIE1.png){width="600"}
   <figcaption>Figure 2: DTLS Server sends a Cookie</figcaption>
 </figure>
 
 <figure markdown id="figure-3">
-  ![Figure 3: DTLS Client sends request with Cookie](../images/DTLSCOOKIE2.png)
+  ![Figure 3: DTLS Client sends request with Cookie](../images/DTLSCOOKIE2.png){width="600"}
   <figcaption>Figure 3: DTLS Client sends request with Cookie</figcaption>
 </figure>
 
@@ -40,14 +40,14 @@ However, we can also identify several differences, including the epoch and recor
 Moving forward, we can see the ServerHello and notice another consequence of using UDP: the handshake message can be fragmented across multiple DTLS records because a DTLS record must fit within a single datagram.
 
 <figure markdown id="figure-4">
-  ![Figure 4: DTLS fragmented Server Hello](../images/DTLSSERVERHELLO.png)
+  ![Figure 4: DTLS fragmented Server Hello](../images/DTLSSERVERHELLO.png){width="750"}
   <figcaption>Figure 4: DTLS fragmented Server Hello</figcaption>
 </figure>
 
 This is expected when a handshake message is too large to fit into a single datagram. DTLS provides mechanisms to reassemble fragmented handshake messages and retransmit lost handshake messages when necessary.
 
 <figure markdown id="figure-5">
-  ![Figure 5: DTLS Server Hello](../images/DTLSSERVERHELLO2.png)
+  ![Figure 5: DTLS Server Hello](../images/DTLSSERVERHELLO2.png){width="600"}
   <figcaption>Figure 5: DTLS Server Hello</figcaption>
 </figure>
 
@@ -56,14 +56,14 @@ Looking at Figure 5, we can see that the overall structure remains similar to TL
 We can also identify the DTLS-specific fields, including the epoch and record sequence number, as well as the message sequence number, fragment offset, and fragment length. These fields allow the receiver to identify the cryptographic state of records, detect duplicate records, and reassemble handshake messages that arrive out of order or in multiple fragments.
 
 <figure markdown id="figure-6">
-  ![Figure 6: DTLS Server Hello Key Exchange and End](../images/DTLSSERVERHELLO3.png)
+  ![Figure 6: DTLS Server Hello Key Exchange and End](../images/DTLSSERVERHELLO3.png){width="600"}
   <figcaption>Figure 6: DTLS Server Hello Key Exchange and End</figcaption>
 </figure>
 
 After reassembling the certificate, we can see the server complete its handshake messages by sending its key-exchange information and ServerHelloDone message, together with the DTLS-specific fields used to provide datagram-oriented handshake handling.
 
 <figure markdown id="figure-7">
-  ![Figure 7: DTLS Client Response](../images/DTLSCLIENTRESPONSE.png)
+  ![Figure 7: DTLS Client Response](../images/DTLSCLIENTRESPONSE.png){width="600"}
   <figcaption>Figure 7: DTLS Client Response</figcaption>
 </figure>
 
@@ -84,12 +84,12 @@ tc qdisc add dev eth1 root netem loss 80%
 This command configures the netem queue on eth1 to drop 80% of packets transmitted through that interface. This value is intentionally high to ensure that packet loss occurs during the handshake and make its effects easier to observe. We will now restart the client and see how the handshake is processed under these conditions.
 
 <figure markdown id="figure-8">
-  ![Figure 8: DTLS Loss Response Part 1](../images/DTLSLOSS1.png)
+  ![Figure 8: DTLS Loss Response Part 1](../images/DTLSLOSS1.png){width="750"}
   <figcaption>Figure 8: DTLS Loss Response Part 1</figcaption>
 </figure>
 
 <figure markdown id="figure-9">
-  ![Figure 9: DTLS Loss Response Part 2](../images/DTLSLOSS2.png)
+  ![Figure 9: DTLS Loss Response Part 2](../images/DTLSLOSS2.png){width="750"}
   <figcaption>Figure 9: DTLS Loss Response Part 2</figcaption>
 </figure>
 
@@ -111,7 +111,7 @@ tc qdisc add dev eth1 root netem \
 This gives each packet transmitted through the interface a 50% chance of being duplicated. Restart the server and client, and let's see what DTLS does in a capture between MitM and DTLSServer.
 
 <figure markdown id="figure-10">
-  ![Figure 10: DTLS Duplication Response](../images/DTLSDUPE.png)
+  ![Figure 10: DTLS Duplication Response](../images/DTLSDUPE.png){width="750"}
   <figcaption>Figure 10: DTLS Duplication Response</figcaption>
 </figure>
 
@@ -142,7 +142,7 @@ For this experiment, we will look more closely at how DTLS handles fragmentation
 From the previous experiments, we could already see that DTLS implements mechanisms to handle the fragmentation that can occur when using datagram-based transport. Through the use of message sequence numbers, DTLS can keep track of which part of a message each fragment belongs to. The fragment offset and fragment length then identify the position and size of each fragment, allowing the receiver to reassemble the original handshake message when all of its fragments have arrived.
 
 <figure markdown id="figure-11">
-  ![Figure 11: DTLS Fragmentation](../images/DTLSFRAG.png)
+  ![Figure 11: DTLS Fragmentation](../images/DTLSFRAG.png){width="600"}
   <figcaption>Figure 11: DTLS Fragmentation</figcaption>
 </figure>
 
@@ -173,14 +173,14 @@ openssl s_client \
 If we look at Wireshark with this MTU, we can see a reduction in the number of fragmented messages and in the number of fragments used for messages that are still fragmented, such as the certificate, as shown in Figure 12.
 
 <figure markdown id="figure-12">
-  ![Figure 12: DTLS Fragmentation reduced](../images/DTLSMTUHIGH.png)
+  ![Figure 12: DTLS Fragmentation reduced](../images/DTLSMTUHIGH.png){width="750"}
   <figcaption>Figure 12: DTLS Fragmentation reduced</figcaption>
 </figure>
 
 When we use the lower MTU value of 256, we return to a configuration with more fragmented messages and more fragments, as shown in Figure 13.
 
 <figure markdown id="figure-13">
-  ![Figure 13: DTLS Fragmentation increased](../images/DTLSMTULOW.png)
+  ![Figure 13: DTLS Fragmentation increased](../images/DTLSMTULOW.png){width="750"}
   <figcaption>Figure 13: DTLS Fragmentation increased</figcaption>
 </figure>
 
@@ -215,7 +215,7 @@ tcpreplay -i eth1 /pcaps/replay-capture.pcap
 ```
 
 <figure markdown id="figure-14">
-  ![Figure 14: DTLS Replay Attack](../images/DTLSREPLAYSHARK.png)
+  ![Figure 14: DTLS Replay Attack](../images/DTLSREPLAYSHARK.png){width="600"}
   <figcaption>Figure 14: DTLS Replay Attack</figcaption>
 </figure>
 
@@ -224,7 +224,7 @@ In Figure 14, we can see the replayed messages between MitM and DTLSServer, incl
 As a result, we should see no corresponding change in the server's application state. This demonstrates that simply capturing and retransmitting previously valid DTLS records does not allow an attacker to replay them successfully.
 
 <figure markdown id="figure-15">
-  ![Figure 15: DTLS Replay Attack unsuccessful](../images/DTLSREPLAYTERM.png)
+  ![Figure 15: DTLS Replay Attack unsuccessful](../images/DTLSREPLAYTERM.png){width="600"}
   <figcaption>Figure 15: DTLS Replay Attack unsuccessful</figcaption>
 </figure>
 

@@ -17,7 +17,7 @@ We can easily see this in practice by starting a Wireshark capture on the connec
 The capture should look like Figure 1:
 
 <figure markdown id="figure-1">
-  ![Figure 1: TCP Handshake Capture](../images/TLSTCPHAND.png)
+  ![Figure 1: TCP Handshake Capture](../images/TLSTCPHAND.png){width="750"}
   <figcaption>Figure 1: TCP Handshake Capture</figcaption>
 </figure>
 
@@ -30,7 +30,7 @@ These messages are necessary for the creation of a TCP connection, and interfere
 For this experiment, our focus will be on the second handshake that we captured: the TLS handshake.
 
 <figure markdown id="figure-2">
-  ![Figure 2: TLS 1.3 Handshake Capture](../images/TLS13HAND.png)
+  ![Figure 2: TLS 1.3 Handshake Capture](../images/TLS13HAND.png){width="750"}
   <figcaption>Figure 2: TLS 1.3 Handshake Capture</figcaption>
 </figure>
 
@@ -39,14 +39,14 @@ With the commands we used to create the server and client, we used TLS 1.3, sinc
 It begins with a ClientHello, seen in Figure 3, which contains what we saw before, such as the available cipher suites, the key exchange methods available through extensions, the session ID, and a random value associated with the client.
 
 <figure markdown id="figure-3">
-  ![Figure 3: TLS 1.3 Handshake Client Hello](../images/TLS13HANDHELLO.png)
+  ![Figure 3: TLS 1.3 Handshake Client Hello](../images/TLS13HANDHELLO.png){width="600"}
   <figcaption>Figure 3: TLS 1.3 Handshake Client Hello</figcaption>
 </figure>
 
 Then, in Figure 4, we can see the server response. This response contains the cipher suite chosen by the server, which is AES_256_GCM_SHA384, and the key exchange method chosen, x25519mlkem768, which is a hybrid method combining the X25519 elliptic-curve method with ML-KEM-768, a post-quantum key-establishment mechanism. It also includes the session ID and the server random value. The server certificate is already encrypted, as expected from the theory.
 
 <figure markdown id="figure-4">
-  ![Figure 4: TLS 1.3 Handshake Server Hello](../images/TLS13HANDSERVERHELLO.png)
+  ![Figure 4: TLS 1.3 Handshake Server Hello](../images/TLS13HANDSERVERHELLO.png){width="600"}
   <figcaption>Figure 4: TLS 1.3 Handshake Server Hello</figcaption>
 </figure>
 
@@ -77,35 +77,35 @@ openssl s_client \
 With these commands, we now have a TLS 1.2 client connected to a TLS 1.2 server, and we should be able to see the handshake that occurred in Wireshark.
 
 <figure markdown id="figure-5">
-  ![Figure 5: TLS 1.2 Handshake](../images/TLS12HAND.png)
+  ![Figure 5: TLS 1.2 Handshake](../images/TLS12HAND.png){width="750"}
   <figcaption>Figure 5: TLS 1.2 Handshake</figcaption>
 </figure>
 
 We can see that the handshake's structure is different, starting in the same way with a ClientHello containing the session ID, the random value, and the available cipher suites. We can also see that the key exchange information is not carried in the same way as in TLS 1.3.
 
 <figure markdown id="figure-6">
-  ![Figure 6: TLS 1.2 Handshake Client Hello](../images/TLS12HANDHELLO.png)
+  ![Figure 6: TLS 1.2 Handshake Client Hello](../images/TLS12HANDHELLO.png){width="600"}
   <figcaption>Figure 6: TLS 1.2 Handshake Client Hello</figcaption>
 </figure>
 
 Following this message comes the ServerHello, containing the session ID, the server random value, and the chosen cipher suite. The server then sends additional handshake messages, including its certificate and, depending on the selected cipher suite, key-exchange parameters in the ServerKeyExchange message. This differs from the TLS 1.3 handshake, in which key-exchange material is provided earlier in the handshake.
 
 <figure markdown id="figure-7">
-  ![Figure 7: TLS 1.2 Handshake Server Hello](../images/TLS12HANDSERVERHELLO.png)
+  ![Figure 7: TLS 1.2 Handshake Server Hello](../images/TLS12HANDSERVERHELLO.png){width="600"}
   <figcaption>Figure 7: TLS 1.2 Handshake Server Hello</figcaption>
 </figure>
 
 Afterward, the client responds with the appropriate key-exchange message, such as ClientKeyExchange, and then sends a ChangeCipherSpec message, which indicates that subsequent records from the client will use the negotiated cipher state.
 
 <figure markdown id="figure-8">
-  ![Figure 8: TLS 1.2 Handshake Client Key Exchange](../images/TLS12HANDCLIENTKEY.png)
+  ![Figure 8: TLS 1.2 Handshake Client Key Exchange](../images/TLS12HANDCLIENTKEY.png){width="600"}
   <figcaption>Figure 8: TLS 1.2 Handshake Client Key Exchange</figcaption>
 </figure>
 
 This process ends with the server sending its own ChangeCipherSpec message and completing the handshake. From this point onward, application data is protected by the negotiated TLS connection.
 
 <figure markdown id="figure-9">
-  ![Figure 9: TLS 1.2 Handshake Server New Session](../images/TLS12HANDSERVERNEW.png)
+  ![Figure 9: TLS 1.2 Handshake Server New Session](../images/TLS12HANDSERVERNEW.png){width="600"}
   <figcaption>Figure 9: TLS 1.2 Handshake Server New Session</figcaption>
 </figure>
 
@@ -133,7 +133,7 @@ This rule causes TCP SYN-ACK packets matching the rule to be rejected with TCP R
 When looking at Wireshark, this should be the result:
 
 <figure markdown id="figure-10">
-  ![Figure 10: TCP Retransmissions](../images/TLSTCPATTACK.png)
+  ![Figure 10: TCP Retransmissions](../images/TLSTCPATTACK.png){width="800"}
   <figcaption>Figure 10: TCP Retransmissions</figcaption>
 </figure>
 
@@ -163,7 +163,7 @@ tc qdisc add dev eth1 root netem loss 20%
 This will cause 20% of the packets passing through eth1 to be dropped by MitM. Now we will resume the client process and see what appears in Wireshark:
 
 <figure markdown id="figure-11">
-  ![Figure 11: Packet Loss Attack](../images/TLSPACATK.png)
+  ![Figure 11: Packet Loss Attack](../images/TLSPACATK.png){width="800"}
   <figcaption>Figure 11: Packet Loss Attack</figcaption>
 </figure>
 
@@ -199,7 +199,7 @@ tc qdisc add dev eth1 root netem \
 This will give each packet a 25% chance of being duplicated. We expect TLS to follow the same trend as before and continue working normally, thanks to the reliability mechanisms provided by TCP.
 
 <figure markdown id="figure-12">
-  ![Figure 12: Duplication Attack](../images/TLSDUPATK.png)
+  ![Figure 12: Duplication Attack](../images/TLSDUPATK.png){width="800"}
   <figcaption>Figure 12: Duplication Attack</figcaption>
 </figure>
 

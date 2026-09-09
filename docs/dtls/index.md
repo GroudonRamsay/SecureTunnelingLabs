@@ -13,7 +13,7 @@ DTLS 1.3, defined in RFC 9147, introduces major improvements that align the prot
 Like TLS 1.3, DTLS 1.3 provides a simplified handshake, shown in Figure 1, which reduces round-trip time and handshake complexity compared with previous versions, benefiting performance in high-latency and low-power environments.
 
 <figure markdown id="figure-1">
-  ![Figure 1: DTLS 1.3 Handshake](../images/DTLSHAND.png)
+  ![Figure 1: DTLS 1.3 Handshake](../images/DTLSHAND.png){width="500"}
   <figcaption>Figure 1: DTLS 1.3 Handshake</figcaption>
 </figure>
 
@@ -26,7 +26,7 @@ The topology of this laboratory consists of:
 The topology is visible in Figure 2:
 
 <figure markdown id="figure-2">
-  ![Figure 2: DTLS Topology](../images/DTLSTOPO.png)
+  ![Figure 2: DTLS Topology](../images/DTLSTOPO.png){width="500"}
   <figcaption>Figure 2: DTLS Topology</figcaption>
 </figure>
 
@@ -95,7 +95,7 @@ openssl s_client -dtls -connect 10.0.2.10:4433
 Your client should successfully connect to the server, and you should see the handshake occur, as shown in Figure 3:
 
 <figure markdown id="figure-3">
-  ![Figure 3: DTLS Handshake](../images/DTLSLIVEHAND.png)
+  ![Figure 3: DTLS Handshake](../images/DTLSLIVEHAND.png){width="750"}
   <figcaption>Figure 3: DTLS Handshake</figcaption>
 </figure>>
 

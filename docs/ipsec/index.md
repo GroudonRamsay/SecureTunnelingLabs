@@ -19,7 +19,7 @@ IKEv2 addresses these shortcomings by consolidating the protocol into a single, 
 During IKE_SA_INIT, shown in the second half of Figure 1, peers negotiate cryptographic algorithms, exchange nonces, and perform a single Diffie–Hellman key exchange to derive shared secrets. The subsequent IKE_AUTH exchange authenticates both parties and establishes the first IPsec Child SA in a single step, eliminating the need for a separate Quick Mode.
 
 <figure markdown id="figure-1">
-  ![Figure 1: IKEv1 vs IKEv2](../images/IKEv2 diagram.drawio.png)
+  ![Figure 1: IKEv1 vs IKEv2](../images/IKEv2 diagram.drawio.png){width="600"}
   <figcaption>Figure 1: IKEv1 vs IKEv2</figcaption>
 </figure>
 
@@ -39,7 +39,7 @@ The topology of this laboratory consists in:
 The topology is visible in Figure 2:
 
 <figure markdown id="figure-2">
-  ![Figure 2: IPsec Topology](../images/IPSECTOPO.png)
+  ![Figure 2: IPsec Topology](../images/IPSECTOPO.png){width="600"}
   <figcaption>Figure 2: IPsec Topology</figcaption>
 </figure>
 
@@ -267,7 +267,7 @@ ping 192.168.4.100
 We can then observe whether the packets are protected and, instead of appearing as their usual ICMP packets, appear as ESP packets, as we can see in Figure 3:
 
 <figure markdown id="figure-3">
-  ![Figure 3: IPsec Test](../images/IPSECTEST.png)
+  ![Figure 3: IPsec Test](../images/IPSECTEST.png){width="600"}
   <figcaption>Figure 3: IPsec Test</figcaption>
 </figure>
 

@@ -17,7 +17,7 @@ This will clear the current tunnel and trigger IKE to perform a new handshake to
 The handshake packets in Wireshark should look like this:
 
 <figure markdown id="figure-1">
-  ![Figure 1: IKEv1 Handshake Packets](../images/IPSECHANDPACKETS.png)
+  ![Figure 1: IKEv1 Handshake Packets](../images/IPSECHANDPACKETS.png){width="600"}
   <figcaption>Figure 1: IKEv1 Handshake Packets</figcaption>
 </figure>
 
@@ -30,7 +30,7 @@ The first two Main Mode packets refer to the negotiation of the IPsec policy. As
 Let's look at the payload of the first message to see whether it matches our expectations.
 
 <figure markdown id="figure-2">
-  ![Figure 2: IKEv1 Policy Negotiation](../images/IPSECHANDPOLICY.png)
+  ![Figure 2: IKEv1 Policy Negotiation](../images/IPSECHANDPOLICY.png){width="500"}
   <figcaption>Figure 2: IKEv1 Policy Negotiation</figcaption>
 </figure>
 
@@ -39,7 +39,7 @@ As we can see in Figure 2, the policy negotiation packets follow the policy we c
 Moving forward, let's look at the second set, which handles the key exchange. In these packets, we expect to find a nonce, the key being exchanged, and some information regarding Vendor IDs.
 
 <figure markdown id="figure-3">
-  ![Figure 3: IKEv1 Key Exchange](../images/IPSECHANDKEY.png)
+  ![Figure 3: IKEv1 Key Exchange](../images/IPSECHANDKEY.png){width="500"}
   <figcaption>Figure 3: IKEv1 Key Exchange</figcaption>
 </figure>
 
@@ -54,7 +54,7 @@ IPsec also includes a KeepAlive mechanism to maintain the SA and tunnel. However
 Finally, for regular operation, we can repeat the ping we performed to test the setup and quickly see that our packets are encrypted by IPsec. We can only see the IPv4 header before reaching the ESP-protected section, as shown in Figure 4.
 
 <figure markdown id="figure-4">
-  ![Figure 4: IKEv1 Regular Operation](../images/IPSECREGOP.png)
+  ![Figure 4: IKEv1 Regular Operation](../images/IPSECREGOP.png){width="600"}
   <figcaption>Figure 4: IKEv1 Regular Operation</figcaption>
 </figure>
 
@@ -83,7 +83,7 @@ When this is done on both sides, the tunnel will be re-established with our new 
 First, let's look at the handshake process and see whether there are any changes:
 
 <figure markdown id="figure-5">
-  ![Figure 5: IKEv1 AH Handshake](../images/IPSECAHHAND.png)
+  ![Figure 5: IKEv1 AH Handshake](../images/IPSECAHHAND.png){width="600"}
   <figcaption>Figure 5: IKEv1 AH Handshake</figcaption>
 </figure>
 
@@ -92,7 +92,7 @@ As we can see, not only is the handshake order unaffected, but the encrypted sec
 However, the regular traffic within the tunnel is bound to have changed. Let's perform a ping again and see what is different:
 
 <figure markdown id="figure-6">
-  ![Figure 6: IKEv1 AH Regular Operation](../images/IPSECAHREGOP.png)
+  ![Figure 6: IKEv1 AH Regular Operation](../images/IPSECAHREGOP.png){width="600"}
   <figcaption>Figure 6: IKEv1 AH Regular Operation</figcaption>
 </figure>
 
@@ -252,7 +252,7 @@ clear crypto session
 We will be able to see the following handshake:
 
 <figure markdown id="figure-7">
-  ![Figure 7: IKEv2 Handshake](../images/IPSECIKEV2HAND.png)
+  ![Figure 7: IKEv2 Handshake](../images/IPSECIKEV2HAND.png){width="600"}
   <figcaption>Figure 7: IKEv2 Handshake</figcaption>
 </figure>
 
@@ -267,14 +267,14 @@ Another important detail is that IKEv2 uses a more modern and flexible cryptogra
 We can see some of these algorithms in Figures 8 and 9:
 
 <figure markdown id="figure-8">
-  ![Figure 8: IKEv2 Handshake First Part](../images/IPSECIKEV2FIRSTHAND.png)
+  ![Figure 8: IKEv2 Handshake First Part](../images/IPSECIKEV2FIRSTHAND.png){width="600"}
   <figcaption>Figure 8: IKEv2 Handshake First Part</figcaption>
 </figure>
 
 In Figure 8, we can see some changes from IKEv1, namely a stronger encryption algorithm in the form of AES-CBC with a 256-bit key and a Pseudo-Random Function using SHA-512 for key derivation.
 
 <figure markdown id="figure-9">
-  ![Figure 9: IKEv2 Handshake Second Part](../images/IPSECIKEV2SECONDHAND.png)
+  ![Figure 9: IKEv2 Handshake Second Part](../images/IPSECIKEV2SECONDHAND.png){width="600"}
   <figcaption>Figure 9: IKEv2 Handshake Second Part</figcaption>
 </figure>
 
@@ -476,7 +476,7 @@ When this is done on both routers, IKE should start, the tunnel should form, and
 After confirming that the ping is indeed protected, we can reset the crypto session to observe IKEv2 occurring. Although the IKE_AUTH exchange will still be protected, meaning that we will not be able to see the certificates being used directly, we can still see that certificates are being requested during IKE_SA_INIT in the response:
 
 <figure markdown id="figure-10">
-  ![Figure 10: IKEv2 Certificate Request](../images/IPSECIKEV2CERT.png)
+  ![Figure 10: IKEv2 Certificate Request](../images/IPSECIKEV2CERT.png){width="600"}
   <figcaption>Figure 10: IKEv2 Certificate Request</figcaption>
 </figure>
 
@@ -558,7 +558,7 @@ tcpreplay -i eth0 /pcaps/replay-capture.pcap
 During the attack, you will see several packets appear in Wireshark between the device and R1, with a warning for out-of-order sequence numbers, as we expected. We can confirm this in Figure 11:
 
 <figure markdown id="figure-11">
-  ![Figure 11: Out of Order ESP packets](../images/IPSECREPATK.png)
+  ![Figure 11: Out of Order ESP packets](../images/IPSECREPATK.png){width="600"}
   <figcaption>Figure 11: Out of Order ESP packets</figcaption>
 </figure>
 
@@ -573,7 +573,7 @@ show crypto ipsec sa detail
 This will show information regarding the IPsec SA, including rejected packets. We should see some rejected packets, similar to those shown in Figure 12:
 
 <figure markdown id="figure-12">
-  ![Figure 12: Rejected packets by IPsec](../images/IPSECREPREJ.png)
+  ![Figure 12: Rejected packets by IPsec](../images/IPSECREPREJ.png){width="600"}
   <figcaption>Figure 12: Rejected packets by IPsec</figcaption>
 </figure>
 

@@ -1394,19 +1394,19 @@ show anysec service-encryption
 For the output of the first command, you should see both of the services that are using tunnel encryption. It should be similar to Figures 2 and 3.
 
 <figure markdown id="figure-2">
-  ![Figure 2: Tunnel Encryption Information for VLL](../images/ANYTUNVLL.png)
+  ![Figure 2: Tunnel Encryption Information for VLL](../images/ANYTUNVLL.png){width="500"}
   <figcaption>Figure 2: Tunnel Encryption Information for VLL</figcaption>
 </figure>
 
 <figure markdown id="figure-3">
-  ![Figure 3: Tunnel Encryption Information for VPRN](../images/ANYTUNVPRN.png)
+  ![Figure 3: Tunnel Encryption Information for VPRN](../images/ANYTUNVPRN.png){width="500"}
   <figcaption>Figure 3: Tunnel Encryption Information for VPRN</figcaption>
 </figure>
 
 For the second command, you should see the single service using service encryption. The output should be similar to Figure 4:
 
 <figure markdown id="figure-4">
-  ![Figure 4: Service Encryption Information for VPLS](../images/ANYSERVVPLS.png)
+  ![Figure 4: Service Encryption Information for VPLS](../images/ANYSERVVPLS.png){width="500"}
   <figcaption>Figure 4: Service Encryption Information for VPLS</figcaption>
 </figure>
 

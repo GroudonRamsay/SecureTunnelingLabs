@@ -31,7 +31,7 @@ The topology of this laboratory consists of:
 The topology is visible in Figure 1:
 
 <figure markdown id="figure-1">
-  ![Figure 1: PKI Topology](../images/PKITOPO.png)
+  ![Figure 1: PKI Topology](../images/PKITOPO.png){width="500"}
   <figcaption>Figure 1: PKI Topology</figcaption>
 </figure>
 

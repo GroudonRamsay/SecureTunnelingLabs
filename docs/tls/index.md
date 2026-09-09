@@ -15,7 +15,7 @@ TLS 1.3 significantly simplifies this model by mandating modern AEAD ciphers, en
 We can observe a comparison between the TLS 1.2 and TLS 1.3 handshakes in Figure 1. We can see several improvements between the two versions, such as the reduced number of round trips required for session establishment through the front-loading of key-exchange material into the ClientHello message. This allows TLS 1.3 to start a session faster and encrypt messages sooner.
 
 <figure markdown id="figure-1">
-  ![Figure 1: TLS 1.2 and 1.3 Handshakes](../images/TLSHAND.png)
+  ![Figure 1: TLS 1.2 and 1.3 Handshakes](../images/TLSHAND.png){width="600"}
   <figcaption>Figure 1: TLS 1.2 and 1.3 Handshakes</figcaption>
 </figure>
 
@@ -30,7 +30,7 @@ The topology of this laboratory consists of:
 The topology is visible in Figure 2:
 
 <figure markdown id="figure-2">
-  ![Figure 2: TLS Topology](../images/TLSTOPO.png)
+  ![Figure 2: TLS Topology](../images/TLSTOPO.png){width="600"}
   <figcaption>Figure 2: TLS Topology</figcaption>
 </figure>
 

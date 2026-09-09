@@ -11,7 +11,7 @@ Now let's evaluate whether this is correct and whether it corresponds to the act
 To perform this experiment, ensure that all WireGuard interfaces are turned off, and then place a Wireshark probe on the connection between WG1 and the switch.
 
 <figure markdown id="figure-1">
-  ![Figure 1: WireShark Probe](../images/WSProbe.png){width="400"}
+  ![Figure 1: WireShark Probe](../images/WSProbe.png){width="250"}
   <figcaption>Figure 1: WireShark Probe</figcaption>
 </figure>
 
@@ -29,7 +29,7 @@ In Figure 2, we can see two distinct moments. The first two packets describe Wir
 For this section, we shall focus on the first two packets, detailing the handshake and its components. Open the first packet and analyze its contents.
 
 <figure markdown id="figure-3">
-  ![Figure 3: Handshake first packet](../images/WGEXPhand1.png)
+  ![Figure 3: Handshake first packet](../images/WGEXPhand1.png){width="750"}
   <figcaption>Figure 3: Handshake first packet</figcaption>
 </figure>
 
@@ -44,7 +44,7 @@ For this section, we shall focus on the first two packets, detailing the handsha
 Now that we have identified all the elements of this packet and analyzed their purpose in WireGuard, let's analyze the second packet and see whether it matches what we theorized and what these elements are used for.
 
 <figure markdown id="figure-4">
-  ![Figure 4: Handshake second packet](../images/WGEXPhand2.png)
+  ![Figure 4: Handshake second packet](../images/WGEXPhand2.png){width="750"}
   <figcaption>Figure 4: Handshake second packet</figcaption>
 </figure>
 
@@ -74,7 +74,7 @@ We will use the first two KeepAlive packets, immediately after the initial hands
 From these packets, we can see the following elements:
 
 <figure markdown id="figure-6">
-  ![Figure 6: WireGuard KeepAlive Analysis](../images/WGKeepAA.png)
+  ![Figure 6: WireGuard KeepAlive Analysis](../images/WGKeepAA.png){width="750"}
   <figcaption>Figure 6: WireGuard KeepAlive Analysis</figcaption>
 </figure>
 
@@ -98,7 +98,7 @@ Creating these packets is as simple as performing a ping from WG1 to WG2, target
 If we let five pings occur, we should get a capture that looks like this:
 
 <figure markdown id="figure-8">
-  ![Figure 8: WireGuard Regular Operation](../images/WGRegOP.png)
+  ![Figure 8: WireGuard Regular Operation](../images/WGRegOP.png){width="750"}
   <figcaption>Figure 8: WireGuard Regular Operation</figcaption>
 </figure>
 
@@ -127,7 +127,7 @@ wg
 ```
 
 <figure markdown id="figure-9">
-  ![Figure 9: WireGuard Roaming Packets](../images/WGRoamingPackets.png)
+  ![Figure 9: WireGuard Roaming Packets](../images/WGRoamingPackets.png){width="750"}
   <figcaption>Figure 9: WireGuard Roaming Packets</figcaption>
 </figure>
 

@@ -31,7 +31,7 @@ The topology of this laboratory consists of:
 The topology is visible in Figure 1:
 
 <figure markdown id="figure-1">
-  ![Figure 1: PQ Topology](../images/PQTOPO.png)
+  ![Figure 1: PQ Topology](../images/PQTOPO.png){width="400"}
   <figcaption>Figure 1: PQ Topology</figcaption>
 </figure>
 

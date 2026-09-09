@@ -15,7 +15,7 @@ The transport layer, described in RFC 4253, establishes a secure channel, with i
 The authentication layer supports mechanisms such as public-key authentication using RSA, Ed25519, or ECDSA, as well as password authentication. The connection layer multiplexes multiple logical channels, such as shell, exec, subsystem, and port forwarding, over a single transport connection, as defined by RFC 4254.
 
 <figure markdown id="figure-1">
-  ![Figure 1: SSH Handshake](../images/SSHHAND.png)
+  ![Figure 1: SSH Handshake](../images/SSHHAND.png){width="400"}
   <figcaption>Figure 1: SSH Handshake</figcaption>
 </figure>
 
@@ -29,7 +29,7 @@ The topology of this laboratory consists of:
 The topology is visible in Figure 2:
 
 <figure markdown id="figure-2">
-  ![Figure 2: SSH Topology](../images/SSHTOPO.png)
+  ![Figure 2: SSH Topology](../images/SSHTOPO.png){width="500"}
   <figcaption>Figure 2: SSH Topology</figcaption>
 </figure>
 

@@ -20,7 +20,7 @@ openssl s_client \
 The TLS connection should be successfully established. By analyzing the Wireshark capture and the terminal output, we should find evidence that our hybrid key exchange group was used. Let's start with Wireshark:
 
 <figure markdown id="figure-1">
-  ![Figure 1: Hybrid Handshake Client side](../images/PQMLKEM1.png)
+  ![Figure 1: Hybrid Handshake Client side](../images/PQMLKEM1.png){width="600"}
   <figcaption>Figure 1: Hybrid Handshake Client side</figcaption>
 </figure>
 
@@ -29,7 +29,7 @@ As shown in Figure 1, the Client Hello contains X25519MLKEM768 as the only offer
 We can further confirm the negotiated group by examining the Server Hello in Figure 2:
 
 <figure markdown id="figure-2">
-  ![Figure 2: Hybrid Handshake Server side](../images/PQMLKEM2.png)
+  ![Figure 2: Hybrid Handshake Server side](../images/PQMLKEM2.png){width="600"}
   <figcaption>Figure 2: Hybrid Handshake Server side</figcaption>
 </figure>
 
@@ -40,7 +40,7 @@ We can also confirm the negotiated group through the information displayed in th
 By looking at the negotiation section of the output shown in Figure 3, we can see information such as the cipher suite, protocol version, compression, public key information, and certificate verification result. We can also see the negotiated group, which in this case is our chosen X25519MLKEM768.
 
 <figure markdown id="figure-3">
-  ![Figure 3: Hybrid Handshake Client side terminal](../images/PQMLKEM3.png)
+  ![Figure 3: Hybrid Handshake Client side terminal](../images/PQMLKEM3.png){width="600"}
   <figcaption>Figure 3: Hybrid Handshake Client side terminal</figcaption>
 </figure>
 
@@ -55,12 +55,12 @@ Although hybrid methods provide additional post-quantum protection, they general
 We can observe this difference by examining the size of the key share information in both the Client Hello and Server Hello from our hybrid test.
 
 <figure markdown id="figure-4">
-  ![Figure 4: Hybrid Handshake Client Hello length](../images/PQLENGTH1.png)
+  ![Figure 4: Hybrid Handshake Client Hello length](../images/PQLENGTH1.png){width="300"}
   <figcaption>Figure 4: Hybrid Handshake Client Hello length</figcaption>
 </figure>
 
 <figure markdown id="figure-5">
-  ![Figure 5: Hybrid Handshake Server Hello length](../images/PQLENGTH2.png)
+  ![Figure 5: Hybrid Handshake Server Hello length](../images/PQLENGTH2.png){width="300"}
   <figcaption>Figure 5: Hybrid Handshake Server Hello length</figcaption>
 </figure>
 
@@ -82,7 +82,7 @@ openssl s_client \
 We can then examine the resulting Client Hello in Wireshark.
 
 <figure markdown id="figure-6">
-  ![Figure 6: Classical Handshake Client Hello length](../images/PQLENGTH3.png)
+  ![Figure 6: Classical Handshake Client Hello length](../images/PQLENGTH3.png){width="300"}
   <figcaption>Figure 6: Classical Handshake Client Hello length</figcaption>
 </figure>
 
@@ -91,7 +91,7 @@ As shown in Figure 6, the classical X25519 key share takes 38 bytes out of a tot
 Similarly, Figure 7 shows that the classical key share takes 36 bytes out of a total packet size of 122 bytes, or approximately 30% of the total packet.
 
 <figure markdown id="figure-7">
-  ![Figure 7: Classical Handshake Server Hello length](../images/PQLENGTH4.png)
+  ![Figure 7: Classical Handshake Server Hello length](../images/PQLENGTH4.png){width="300"}
   <figcaption>Figure 7: Classical Handshake Server Hello length</figcaption>
 </figure>
 
@@ -165,7 +165,7 @@ The first command performs the decapsulation and writes the resulting shared sec
 If the operation was successful, the two SHA-256 hashes should be identical, and cmp should produce no output because the files are identical, as shown in Figure 8.
 
 <figure markdown id="figure-8">
-  ![Figure 8: MLKEM encapsulation check](../images/PQENCAP.png)
+  ![Figure 8: MLKEM encapsulation check](../images/PQENCAP.png){width="600"}
   <figcaption>Figure 8: MLKEM encapsulation check</figcaption>
 </figure>
 
@@ -223,7 +223,7 @@ openssl pkeyutl \
 We should now see an output similar to the one shown in Figure 9, where the verification fails because the message is now different from the one that was originally signed. As a result, the signature no longer matches the modified message, causing the verification check to fail.
 
 <figure markdown id="figure-9">
-  ![Figure 9: MLDSA Signature check](../images/PQMLDSA1.png)
+  ![Figure 9: MLDSA Signature check](../images/PQMLDSA1.png){width="600"}
   <figcaption>Figure 9: MLDSA Signature check</figcaption>
 </figure>
 
@@ -286,7 +286,7 @@ openssl s_client \
 The connection should be successful because the certificate can be correctly verified. Although the use of the ML-DSA certificate is not immediately visible in the Wireshark packet exchange, we can confirm it from the terminal output, as shown in Figure 10:
 
 <figure markdown id="figure-10">
-  ![Figure 10: MLDSA Certificate in TLS](../images/PQMLDSA2.png)
+  ![Figure 10: MLDSA Certificate in TLS](../images/PQMLDSA2.png){width="400"}
   <figcaption>Figure 10: MLDSA Certificate in TLS</figcaption>
 </figure>
 
@@ -324,7 +324,7 @@ The handshake should fail because the client and server do not have a mutually s
 The resulting TLS alert can be observed during the handshake. In this case, the alert is SSL alert number 40, as shown in Figure 11. This alert corresponds to a handshake failure, indicating that the peers could not successfully negotiate the required TLS parameters.
 
 <figure markdown id="figure-11">
-  ![Figure 11: Handshake failure between classic and hybrid groups](../images/PQMIS1.png)
+  ![Figure 11: Handshake failure between classic and hybrid groups](../images/PQMIS1.png){width="600"}
   <figcaption>Figure 11: Handshake failure between classic and hybrid groups</figcaption>
 </figure>
 
@@ -347,7 +347,7 @@ This will start a new server restricted to the SecP384r1MLKEM1024 hybrid key exc
 Then, reconnect using the same hybrid client as before and observe the outcome:
 
 <figure markdown id="figure-12">
-  ![Figure 12: Handshake failure between two hybrid groups](../images/PQMIS2.png)
+  ![Figure 12: Handshake failure between two hybrid groups](../images/PQMIS2.png){width="600"}
   <figcaption>Figure 12: Handshake failure between two hybrid groups</figcaption>
 </figure>
 

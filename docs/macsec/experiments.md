@@ -7,7 +7,7 @@ Now that we have completed the laboratory setup, including its routers, hosts, a
 Let's begin by deploying our laboratory. Go to the ContainerLab page in VSCode, open the folder with your laboratory and select Deploy.
 
 <figure markdown id="figure-4">
-  ![Figure 4: Deploy function](../images/DeployFunction.png){width="200"}
+  ![Figure 4: Deploy function](../images/DeployFunction.png){width="150"}
   <figcaption>Figure 4: Deploy Function</figcaption>
 </figure>
 
@@ -44,7 +44,7 @@ show router route-table
 The result of this command should be a table with entries similar to those shown below:
 
 <figure markdown id="figure-6">
-  ![Figure 6: Route Table](../images/RouteTable.png)
+  ![Figure 6: Route Table](../images/RouteTable.png){width="500"}
   <figcaption>Figure 6: Route Table</figcaption>
 </figure>
 
@@ -353,14 +353,14 @@ show port 1/1/c2/1 macsec sub-port 1 statistics
 This will show statistics for different parts of MACsec. The statistics we are interested in are shown below:
 
 <figure markdown id="figure-16">
-  ![Figure 16: Replay Attack Statistics in R1](../images/MACReplay1.png)
+  ![Figure 16: Replay Attack Statistics in R1](../images/MACReplay1.png){width="500"}
   <figcaption>Figure 16: Replay Attack Statistics in R1</figcaption>
 </figure>
 
 In R1, we can see that MACsec identified 24 packets as late, meaning that they were outside the replay protection window and were therefore discarded. We can observe this same behavior in R2:
 
 <figure markdown id="figure-17">
-  ![Figure 17: Replay Attack Statistics in R2](../images/MACReplay2.png)
+  ![Figure 17: Replay Attack Statistics in R2](../images/MACReplay2.png){width="500"}
   <figcaption>Figure 17: Replay Attack Statistics in R2</figcaption>
 </figure>
 
