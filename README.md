@@ -42,4 +42,4 @@ Apache-2.0
 
 ## How to Cite
 
-Please cite the archived release DOI and the Computer Networks Open-Source Software Article when available.
+Zenodo DOI: 10.5281/zenodo.22676336
