@@ -8,7 +8,7 @@ authors:
   - family-names: "Valadas"
     given-names: "Rui"
 version: "1.0.0"
-date-released: "TBD"
+date-released: "09/09/2026"
 license: "Apache-2.0"
 repository-code: "https://github.com/groudonramsay/SecureTunnelingLabs"
 url: "https://groudonramsay.github.io/SecureTunnelingLabs/"

@@ -4,7 +4,7 @@
 
 Initial publication release of Secure Tunneling Labs.
 
-Included experiment families:
+Included experiments:
 
 - MACsec
 - ANYsec
@@ -21,7 +21,6 @@ Main artifact components:
 - documentation site
 - experiment workflows
 - topology descriptions
-- configuration files
 - OpenSSL command sequences
 - Wireshark packet-analysis tasks
 - failure experiments
