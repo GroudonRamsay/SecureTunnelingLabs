@@ -16,7 +16,7 @@ v1.0.0
 
 ## License
 
-T.B.D
+Apache-2.0
 
 ## Required Tools
 

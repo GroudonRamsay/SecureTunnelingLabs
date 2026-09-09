@@ -9,6 +9,6 @@ authors:
     given-names: "Rui"
 version: "1.0.0"
 date-released: "TBD"
-license: "TBD"
+license: "Apache-2.0"
 repository-code: "https://github.com/groudonramsay/SecureTunnelingLabs"
 url: "https://groudonramsay.github.io/SecureTunnelingLabs/"
