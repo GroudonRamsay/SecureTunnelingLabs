@@ -2,6 +2,10 @@
 
 The post-quantum readiness of secure tunneling protocols is primarily determined by how key establishment, authentication, and trust anchors are defined within their handshake mechanisms.
 
+Post-quantum migration affects different parts of secure tunnels and secure channels in different ways. Key establishment focus is how peers derive shared secrets for a session. Authentication focus is how peers prove their identities, for example through certificates, signatures, or host keys.
+
+A protocol may use hybrid post-quantum key establishment while still using classical RSA or ECDSA authentication. Conversely, a post-quantum signature provides authentication but does not by itself establish traffic keys.
+
 Protocols that rely on classical public-key cryptography for key exchange or authentication are vulnerable to future quantum adversaries, particularly under the "harvest now, decrypt later" threat model.
 
 In contrast, symmetric cryptography remains comparatively resilient, as quantum attacks provide only a quadratic advantage. This can be mitigated through the use of larger key sizes, such as the ones used in AES-256.

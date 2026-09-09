@@ -169,6 +169,131 @@ If the operation was successful, the two SHA-256 hashes should be identical, and
   <figcaption>Figure 8: MLKEM encapsulation check</figcaption>
 </figure>
 
+## ML-DSA Signatures as Authentication Material
+
+For this experiment, we will generate a signing key using the post-quantum algorithm ML-DSA-65 and test how it functions by signing a text file, verifying the signature, modifying the file, and then attempting to verify the signature again.
+
+First, generate the key we will use and create the text file:
+
+```bash
+openssl genpkey \
+  -algorithm ML-DSA-65 \
+  -out mldsa65.key
+
+echo "Secure Tunneling Labs post-quantum signature test" > message.txt
+```
+
+With the key and message file ready, we will now sign the file using the generated key:
+
+```bash
+openssl pkeyutl \
+  -sign \
+  -in message.txt \
+  -inkey mldsa65.key \
+  -out message.sig \
+  -pkeyopt message-encoding:1
+```
+
+We now have a signature generated using our signing key and the contents of the message file. We can verify the signature with:
+
+```bash
+openssl pkeyutl \
+  -verify \
+  -in message.txt \
+  -inkey mldsa65.key \
+  -sigfile message.sig \
+  -pkeyopt message-encoding:1
+```
+
+This should result in a successful verification because the message remains unchanged and the key used to generate the signature is the same key used to verify it.
+
+Now, let's tamper with the message and see whether the verification remains successful.
+
+```bash
+echo "tampered" >> message.txt
+
+openssl pkeyutl \
+  -verify \
+  -in message.txt \
+  -inkey mldsa65.key \
+  -sigfile message.sig \
+  -pkeyopt message-encoding:1
+```
+
+We should now see an output similar to the one shown in Figure 9, where the verification fails because the message is now different from the one that was originally signed. As a result, the signature no longer matches the modified message, causing the verification check to fail.
+
+<figure markdown id="figure-9">
+  ![Figure 9: MLDSA Signature check](../images/PQMLDSA1.png)
+  <figcaption>Figure 9: MLDSA Signature check</figcaption>
+</figure>
+
+As we can see, post-quantum methods are not limited to key exchange. Some, such as ML-DSA, are designed to provide authentication through digital signatures that are intended to resist attacks from sufficiently powerful quantum computers.
+
+## ML-DSA Certificate Authentication in TLS
+
+For this experiment, we will use ML-DSA to generate a key that will be used to generate a certificate. This certificate will then be used to authenticate the server during a TLS connection.
+
+First, generate the new key and create the certificate:
+
+```bash
+openssl genpkey \
+  -algorithm ML-DSA-65 \
+  -out mldsa-server.key
+
+openssl req \
+  -new \
+  -x509 \
+  -key mldsa-server.key \
+  -out mldsa-server.crt \
+  -days 365 \
+  -subj "/CN=pq-tls-server"
+```
+
+Now that we have our certificate, copy it to the client so that it can use the certificate to authenticate the server:
+
+```bash
+In PQ2:
+
+cat mldsa-server.crt
+
+In PQ1:
+
+nano mldsa-server.crt
+```
+
+Now, start the server, which will present its certificate and use ML-KEM as the key exchange mechanism:
+
+```bash
+openssl s_server \
+  -accept 4434 \
+  -cert mldsa-server.crt \
+  -key mldsa-server.key \
+  -tls1_3 \
+  -groups X25519MLKEM768 \
+```
+
+Then, start the client, which will verify the server's certificate and use the same key exchange group:
+
+```bash
+openssl s_client \
+  -connect 10.10.10.1:4434 \
+  -tls1_3 \
+  -groups X25519MLKEM768 \
+  -CAfile mldsa-server.crt \
+  -verify_return_error \
+```
+
+The connection should be successful because the certificate can be correctly verified. Although the use of the ML-DSA certificate is not immediately visible in the Wireshark packet exchange, we can confirm it from the terminal output, as shown in Figure 10:
+
+<figure markdown id="figure-10">
+  ![Figure 10: MLDSA Certificate in TLS](../images/PQMLDSA2.png)
+  <figcaption>Figure 10: MLDSA Certificate in TLS</figcaption>
+</figure>
+
+We can see that the certificate was received and successfully verified because the TLS connection was established. The terminal output also confirms that the certificate's signature algorithm is ML-DSA-65.
+
+This demonstrates that certificate-based authentication in real-world scenarios is no longer limited to classical cryptographic algorithms. Post-quantum signature algorithms such as ML-DSA can also be used for certificate-based authentication in TLS.
+
 ## Hybrid Group Mismatch
 
 For our final experiment, we will examine how TLS handles mismatches between key exchange groups, including mismatches between classical and hybrid groups and between different hybrid groups.
@@ -196,11 +321,11 @@ openssl s_client \
 
 The handshake should fail because the client and server do not have a mutually supported key exchange group.
 
-The resulting TLS alert can be observed during the handshake. In this case, the alert is SSL alert number 40, as shown in Figure 9. This alert corresponds to a handshake failure, indicating that the peers could not successfully negotiate the required TLS parameters.
+The resulting TLS alert can be observed during the handshake. In this case, the alert is SSL alert number 40, as shown in Figure 11. This alert corresponds to a handshake failure, indicating that the peers could not successfully negotiate the required TLS parameters.
 
-<figure markdown id="figure-9">
-  ![Figure 9: Handshake failure between classic and hybrid groups](../images/PQMIS1.png)
-  <figcaption>Figure 9: Handshake failure between classic and hybrid groups</figcaption>
+<figure markdown id="figure-11">
+  ![Figure 11: Handshake failure between classic and hybrid groups](../images/PQMIS1.png)
+  <figcaption>Figure 11: Handshake failure between classic and hybrid groups</figcaption>
 </figure>
 
 We expected this outcome because the client and server are restricted to different groups. However, what happens if we try the same experiment using two different hybrid groups?
@@ -221,12 +346,12 @@ This will start a new server restricted to the SecP384r1MLKEM1024 hybrid key exc
 
 Then, reconnect using the same hybrid client as before and observe the outcome:
 
-<figure markdown id="figure-10">
-  ![Figure 10: Handshake failure between two hybrid groups](../images/PQMIS2.png)
-  <figcaption>Figure 10: Handshake failure between two hybrid groups</figcaption>
+<figure markdown id="figure-12">
+  ![Figure 12: Handshake failure between two hybrid groups](../images/PQMIS2.png)
+  <figcaption>Figure 12: Handshake failure between two hybrid groups</figcaption>
 </figure>
 
-As we can see in Figure 10, even though both groups are hybrid, a mismatch still occurs and the handshake ends with an error.
+As we can see in Figure 12, even though both groups are hybrid, a mismatch still occurs and the handshake ends with an error.
 
 The important point is that the failure does not occur simply because one group is classical and the other is hybrid. Instead, the handshake fails because the client and server do not share a mutually supported group.
 
