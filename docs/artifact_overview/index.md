@@ -31,7 +31,3 @@ Secure Tunneling Labs is an open-source laboratory package for reproducible expe
 - Packet-level protocol analysis
 - Reproducible secure-tunnel experimentation
 - Companion artifact for the Computer Networks Open-Source Software Article
-
-## What the Artifact Is Not
-
-This artifact is not a new secure-tunneling protocol and is not primarily a software implementation of MACsec, IPsec, WireGuard, TLS, DTLS, or SSH. Its contribution is the integration of reproducible topologies, configurations, packet captures, guided experiments, and failure cases for studying secure tunneling protocols.
