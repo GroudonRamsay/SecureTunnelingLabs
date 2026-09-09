@@ -153,6 +153,6 @@ nav:
       - PKI:
           - Overview: pki/index.md
           - Experiments: pki/experiments.md
-      - PQ and Hybrid Key Exchange:
+      - PQ and Hybrid Mechanisms:
           - Overview: pq/index.md
           - Experiments: pq/experiments.md

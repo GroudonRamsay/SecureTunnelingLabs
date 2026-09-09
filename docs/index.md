@@ -5,7 +5,7 @@ On this website, we aim to bring you several laboratories focused on showcasing 
 
 This website contains an overview of all the available artifacts and two setup guides for the emulators used, GNS3 and ContainerLab, to help prepare the test environment.
 
-There are also several guides, each focusing on a different tunneling protocol, providing a brief overview of the protocol and its features, the devices and topology chosen for the demonstration and the configurations needed for everything to run properly, followed by several experiments to support the learning process.
+There are also several guides, each focusing on a different tunneling protocol or mechanism, providing a brief overview and its features, the devices and topology chosen for the demonstration and the configurations needed for everything to run properly, followed by several experiments to support the learning process.
 
 We hope you enjoy these laboratories and that they help you learn about secure communication over the Internet!
 
@@ -14,7 +14,7 @@ We hope you enjoy these laboratories and that they help you learn about secure c
 - [ContainerLab](containerlab/index.md) - Setup guide for ContainerLab
 - [GNS3](gns3/index.md) - Setup guide for GNS3
 
-## Protocol Guides
+## Experiments
 
 - [MACsec](macsec/index.md) - Layer 2 hop-by-hop encryption
 - [ANYsec](anysec/index.md) - Layer 2.5 end-to-end protection and routing
@@ -24,7 +24,7 @@ We hope you enjoy these laboratories and that they help you learn about secure c
 - [DTLS](dtls/index.md) - TLS security for UDP-based transport
 - [SSH](ssh/index.md) - Secure Shell administration and tunneling
 - [PKI](pki/index.md) - Certificate issuance and usage in tunneling
-- [Post-Quantum and Hybrid Key Exchange](pq/index.md) - Study of Post-Quantum and Hybrid KEMs used by OpenSSL
+- [Post-Quantum and Hybrid Mechanisms](pq/index.md) - Study of Post-Quantum and Hybrid mechanisms used by OpenSSL
 
 ## Contributors
 

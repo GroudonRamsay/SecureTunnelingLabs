@@ -1,4 +1,4 @@
-## Post-Quantum and Hybrid Key Exchange methods Laboratory
+## Post-Quantum and Hybrid Mechanisms Laboratory
 
 The post-quantum readiness of secure tunneling protocols is primarily determined by how key establishment, authentication, and trust anchors are defined within their handshake mechanisms.
 
